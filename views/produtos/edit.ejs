@@ -1,0 +1,28 @@
+<%- include('../partials/header'); -%>
+<body>
+    <%- include('../partials/nav'); -%>
+    <div class="container">
+      <h1>Empresa</h1>
+      <hr>
+      <div class="card" id="formulario">
+        <div class="card-header">
+          <h3>Editar Produto</h3>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="/produtos/update">
+            <input type="hidden" name="id" value="<%- produto.id %>">
+            <label>Nome</label>
+            <input type="text" class="form-control" name="nome" value="<%- produto.nome %>">
+            <label>Quantidade</label>
+            <input type="text" class="form-control" name="quantidade" value="<%- produto.quantidade %>">
+            <label>Preco</label>
+            <input class="form-control" name="preco" value="<%- produto.preco %>"></input>
+            <br>
+            <button id="save" class="btn btn-primary"></button>
+            <a id="cancel" class="btn btn-danger" href="/produtos" ></a>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+<%- include('../partials/footer'); -%>

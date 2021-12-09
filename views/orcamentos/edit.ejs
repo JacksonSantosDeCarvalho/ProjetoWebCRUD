@@ -1,0 +1,31 @@
+<%- include('../partials/header'); -%>
+<body>
+    <%- include('../partials/nav'); -%>
+    <div class="container">
+        <h1>Empresa</h1>
+        <hr>
+        <div class="card" id="formulario">
+            <div class="card-header">
+                <h3>Editar Orçamento</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/orcamentos/update">
+                    <input type="hidden" name="id" value="<%- orcamento.id %>">
+                    <label>Ano</label>
+                    <input type="text" class="form-control" name="ano" value="<%- orcamento.ano %>">
+                    <label>Mês</label>
+                    <input type="text" class="form-control" name="mes" value="<%- orcamento.mes %>">
+                    <label>Faturamento</label>
+                    <input type="text" class="form-control" name="faturamento" value="<%- orcamento.faturamento %>">
+                    <label>Despesas</label>
+                    <input type="text" class="form-control" name="despesas" value="<%- orcamento.despesas %>">
+                
+                    <br>
+                    <button id="save" class="btn btn-primary"></button>
+                    <a id="cancel" href="/orcamentos" class="btn btn-danger"></a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../partials/footer'); -%>

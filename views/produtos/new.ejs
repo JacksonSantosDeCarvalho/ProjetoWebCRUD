@@ -1,0 +1,30 @@
+<%- include('../partials/header'); -%>
+<body>
+    <%- include('../partials/nav'); -%>
+    <div class="container">
+      <h1>Empresa</h1>
+      <hr>
+      <div class="card" id="formulario">
+        <div class="card-header">
+          <h3>Produtos</h3>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="/produtos/save">
+            <label>Nome</label>
+            <div><%- nomeError %></div>
+            <input type="text" placeholder="Nome" class="form-control" name="nome">
+            <br>
+            <label>Quantidade</label>
+            <input type="text" placeholder="Informe a Quantidade" class="form-control" name="quantidade">
+            <br>
+            <label>Preco</label>
+            <input placeholder="Informe o Preço" class="form-control" name="preco"></input>
+            <br>
+            <button id="save" class="btn btn-primary"></button>
+            <a id="cancel" class="btn btn-danger" href="/produtos" ></a>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+<%- include('../partials/footer'); -%>

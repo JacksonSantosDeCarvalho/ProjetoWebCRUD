@@ -1,0 +1,28 @@
+<%- include('../partials/header'); -%>
+<body>
+    <%- include('../partials/nav'); -%>
+    <div class="container">
+      <h1>Empresa</h1>
+      <hr>
+      <div class="card" id="formulario">
+        <div class="card-header">
+          <h3>Editar Usuário</h3>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="/usuarios/update">
+            <input type="hidden" name="id" value="<%- usuario.id %>">
+            <label>Nome</label>
+            <input type="text" name="nome" class="form-control" value="<%- usuario.nome %>">
+            <label>Email</label>
+            <input type="text" name="email" class="form-control" value="<%- usuario.email %>">
+            <label>Senha</label>
+            <input type="password" name="senha" class="form-control" value="<%- usuario.senha %>">
+            <br>
+            <button id="save" class="btn btn-primary"></button>
+            <a id="cancel" href="/usuarios" class="btn btn-danger"></a>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+<%- include('../partials/footer'); -%>

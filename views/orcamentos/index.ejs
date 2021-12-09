@@ -1,0 +1,56 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/nav'); -%>
+    <div class="container">
+        <h1>Orçamentos</h1>
+        <hr>
+        <div>
+            <a id="new" href="/orcamentos/new" class="btn btn-primary"></a>
+        </div><br>
+        <div>
+            <table class="table table-success table-striped" id="table">
+                <thead>
+                    <tr>
+                        <th>Ano</th>
+                        <th>Mês</th>
+                        <th>Faturamento</th>
+                        <th>Despesas</th>
+                        <th>Lucro</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% orcamentos.forEach(orcamento=>{ %>     
+                        <tr>
+                            <th><%= orcamento.ano %></th>
+                            <th><%= orcamento.mes %></th>
+                            <th>R$ <%= orcamento.faturamento %></th>
+                            <th>R$ <%= orcamento.despesas %></th>
+                            <th>R$ <%= orcamento.lucro %></th>
+                            <th>
+                                <a href="/orcamentos/edit/<%= orcamento.id %>" class="btn btn-primary" id="edit" type="submit"></a>
+                                <form method="POST" action="/orcamentos/delete" onsubmit="confirmDelete(event, this)">
+                                    <input type="hidden" name="id" value="<%= orcamento.id %>">
+                                    <div>
+                                        <button id="delete" class="btn btn-danger" type="submit"></button>
+                                    </div>
+                                </form>
+                            </th>
+                        </tr>   
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<%- include('../partials/footer'); -%>
+
+<script>
+
+    function confirmDelete(event, form){
+        event.preventDefault();
+        var resultado = confirm("Deseja realmente deletar esse faturamento?");
+        if(resultado){
+            form.submit();
+        }
+    }
+
+</script>

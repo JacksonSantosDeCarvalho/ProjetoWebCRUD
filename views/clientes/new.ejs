@@ -1,0 +1,32 @@
+<%- include('../partials/header'); -%>
+<body>
+    <%- include('../partials/nav'); -%>
+    <div class="container">
+        <h1>Empresa</h1>
+        <hr>
+        <div class="card" id="formulario">
+            <div class="card-header">
+                <h3>Clientes</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/clientes/save">
+                    <label>CPF</label>
+                    <input type="text" placeholder="CPF" class="form-control" name="cpf">
+                    <br>
+                    <label>Nome</label>
+                    <input type="text" placeholder="Nome" class="form-control" name="nome">
+                    <br>
+                    <label>Endereço</label>
+                    <input type="text" placeholder="Informe o endereço" class="form-control" name="endereco">
+                    <br>
+                    <label>Contato</label>
+                    <input type="text" placeholder="Informe o contato" class="form-control" name="contato">
+                    <br>
+                    <button id="save" class="btn btn-primary"></button>
+                    <a id="cancel" href="/clientes" class="btn btn-danger"></a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../partials/footer'); -%>

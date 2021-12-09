@@ -1,0 +1,54 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/nav'); -%>
+
+    <div class="container">
+        <h1>Produtos</h1>
+        <hr>
+        <div>
+            <a id="new" class="btn btn-primary" href="/produtos/new" ></a> 
+        </div> <br>   
+        <div>
+            <table class="table table-success table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Material</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Preço da Unidade</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>     
+                    <tbody>
+                        <% produtos.forEach(produto=>{ %>
+                        <tr> 
+                            <th> <%= produto.nome %> </td>
+                            <th> <%= produto.quantidade %> Unidades</td> 
+                            <th> R$ <%= produto.preco %> </td>
+                            <th>
+                                <a href="/produtos/edit/<%= produto.id %>" class="btn btn-primary" id="edit" type="submit"></a>
+                                <form method="POST" action="/produtos/delete" onsubmit="confirmDelete(event, this)">
+                                <input type="hidden" name="id" value="<%= produto.id %>">
+                                <div>
+                                    <button id="delete" class="btn btn-danger" type="submit"></button>
+                                </div>
+                                </form>
+                            </th>
+                        </tr>
+                        <% }) %>
+                    </tbody>     
+            </table>
+        </div>
+    </div>
+    
+<%- include('../partials/footer'); -%>
+
+<script>
+
+    function confirmDelete(event, form){
+        event.preventDefault();
+        var resultado = confirm("Deseja realmente deletar esse produto?");
+        if(resultado){
+            form.submit();
+        }
+    }
+
+</script>

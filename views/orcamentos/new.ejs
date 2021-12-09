@@ -1,0 +1,37 @@
+<%- include('../partials/header'); -%>
+<body>
+    <%- include('../partials/nav'); -%>
+    <div class="container">
+        <h1>Empresa</h1>
+        <hr>
+        <div class="card" id="formulario">
+            <div class="card-header">
+                <h3>Orçamento</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/orcamentos/save" enctype="multipart/form-data">
+                    <label>Ano</label>
+                    <input type="text" placeholder="Ano" class="form-control" name="ano">
+                    <br>
+                    <label>Mês</label>
+                    <input type="text" placeholder="Mês" class="form-control" name="mes">
+                    <br>
+                    <label>Faturamento</label>
+                    <input type="text" placeholder="Informe o valor do faturamento" class="form-control" name="faturamento">
+                    <br>
+                    <label>Despesas</label>
+                    <input type="text" placeholder="Informe o valor da despesa" class="form-control" name="despesas">
+                    <br>
+                    <div>
+                        <input type="file" name="file">
+                    </div>
+                    <br>
+                    <button id="save" class="btn btn-primary" type="submit" value="upload"></button>
+                    <a id="cancel" href="/orcamentos" class="btn btn-danger"></a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../partials/footer'); -%>
+

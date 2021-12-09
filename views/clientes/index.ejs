@@ -1,0 +1,53 @@
+<%- include('../partials/header'); -%>
+<%- include('../partials/nav'); -%>
+    
+    <div class="container">
+        <h1>Clientes</h1>
+        <hr>
+        <div>
+            <a id="new" href="/clientes/new" class="btn btn-primary"></a>
+        </div><br>
+        <div>
+            <table class="table table-success table-striped">
+                <thead>
+                    <tr>
+                        <th>CPF</th>
+                        <th>Nome</th>
+                        <th>Contato</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% clientes.forEach(cliente=>{ %>
+                        <tr>
+                            <th><%= cliente.cpf %></th>
+                            <th><%= cliente.nome %></th>
+                            <th><%= cliente.contato %></th>
+                            <th>
+                                <a href="/clientes/edit/<%= cliente.id %>" class="btn btn-primary" id="edit" type="submit"></a>
+                                <form method="POST" action="/clientes/delete" onsubmit="confirmDelete(event, this)">
+                                    <input type="hidden" name="id" value="<%= cliente.id %>">
+                                    <div>
+                                         <button id="delete" class="btn btn-danger" type="submit"></button>
+                                    </div>
+                                </form>
+                            </th>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<%- include('../partials/footer'); -%>
+
+<script>
+
+    function confirmDelete(event, form){
+        event.preventDefault();
+        var resultado = confirm("Deseja realmente deletar esse cliente?");
+        if(resultado){
+            form.submit();
+        }
+    }
+
+</script>
