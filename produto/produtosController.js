@@ -44,7 +44,7 @@ router.post("/produtos/save", (req, res)=> {
         if(nome == undefined || nome == " " & quantidade == null || quantidade == 0 & preco == null || preco == 0){
             nomeError = "Os campos não podem ficar vazios.";
             quantidadeError = "A quantidade não pode ser vazia.";
-            precoError = "O prço não pode ser vazio.";
+            precoError = "O preço não pode ser vazio.";
             req.flash("nomeError", nomeError);
             res.redirect("/produtos/new");
         }else{

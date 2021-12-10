@@ -81,7 +81,7 @@ router.post("/orcamentos/update", (req, res)=>{
     var mes = req.body.mes;
     var faturamento = req.body.faturamento;
     var despesas = req.body.despesas;
-    var lucro = req.body.lucro;
+    var lucro = (req.body.faturamento - req.body.despesas);
 
     Orcamento.update({ano : ano, mes : mes, faturamento : faturamento, despesas : despesas, lucro : lucro},{
         where : {
