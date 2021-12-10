@@ -27,17 +27,33 @@ router.get("/orcamentos", auth, (req, res)=>{
 })
 
 router.get("/orcamentos/new", auth, (req, res)=>{
-    res.render("orcamentos/new");
+    var anoError = req.flash("anoError");
+    var mesError = req.flash("mesError");
+    var faturamentoError = req.flash("faturamentoError");
+    var despesasError = req.flash("despesasError");
+    var lucroError = req.flash("lucroError");
+
+     anoError = (anoError == undefined || anoError == 0) ? undefined : anoError;
+     mesError = (mesError == undefined || mesError.length == 0) ? undefined : mesError;
+     faturamentoError = (faturamentoError == undefined) ? undefined : faturamentoError;
+     despesasError = (despesasError == undefined || despesasError == 0) ? undefined : despesasError;
+     lucroError = (lucroError == undefined) ? undefined : lucroError;
+    
+    
+    res.render("orcamentos/new", {anoError : anoError, mesError : mesError, faturamentoError : faturamentoError, despesasError : despesasError, lucroError : lucroError});
 })
 
 
 router.post("/orcamentos/save", upload.single("file"), (req, res)=>{
-    var ano = req.body.ano;
-    var mes = req.body.mes;
-    var faturamento = req.body.faturamento;
-    var despesas = req.body.despesas;
+    var {ano, mes, faturamento, despesas} = req.body;
     var lucro = (req.body.faturamento - req.body.despesas);
+    var anoError;
 
+    if(ano == undefined || ano == 0 || mes == undefined || mes == 0){
+        anoError = "Os campos não podem ficar vazios";
+        req.flash("anoError", anoError)
+        res.redirect("/orcamentos/new");
+    }else{
     Orcamento.findOne({ where : {ano : ano, mes : mes}}).then(orcamento =>{
         if(orcamento == undefined){
             Orcamento.create({
@@ -53,6 +69,7 @@ router.post("/orcamentos/save", upload.single("file"), (req, res)=>{
             res.redirect("/orcamentos")
         }
     })
+}
 })
 
 
